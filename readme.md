@@ -36,7 +36,7 @@ The model is built using the **Keras** library on top of **TensorFlow**. The arc
 
 ## Evaluation
 
-The model was trained on a dataset containing thousands of labeled images. It achieved an accuracy of XX% on the training set and YY% on the test set. While these numbers are promising, continuous evaluation and tuning are crucial for further improvements.
+The model was trained on a dataset containing thousands of labeled images. It achieved an accuracy of **93.269%% on the training set and **91.43%% on the test set. While these numbers are promising, continuous evaluation and tuning are crucial for further improvements.
 
 ## Usage
 
@@ -46,11 +46,16 @@ To use this model, simply:
 2. Ensure you have the required libraries installed.
 3. Run the flask app and upload an image for classification.
 
+
+## Data Sources
+A big thank you to the contributors of the datasets that made this project possible.
+
+Waste Classification Data: This dataset was instrumental for training my waste classification model. You can find and explore the dataset in detail on Kaggle. (https://www.kaggle.com/datasets/techsash/waste-classification-data)
 ## Contribution
 
 Contributions, issues, and feature requests are welcome. Feel free to check the issues page if you want to contribute.
 
 ---
 
-**Note**: Replace `XX%` and `YY%` with your actual training and test accuracies.
+
 
