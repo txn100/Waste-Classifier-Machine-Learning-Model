@@ -36,7 +36,7 @@ The model is built using the **Keras** library on top of **TensorFlow**. The arc
 
 ## Evaluation
 
-The model was trained on a dataset containing thousands of labeled images. It achieved an accuracy of **93.269%% on the training set and **91.43%% on the test set. While these numbers are promising, continuous evaluation and tuning are crucial for further improvements.
+The model was trained on a dataset containing thousands of labeled images. It achieved an accuracy of **93.269%** on the training set and **91.43%** on the test set. While these numbers are promising, continuous evaluation and tuning are crucial for further improvements.
 
 ## Usage
 
