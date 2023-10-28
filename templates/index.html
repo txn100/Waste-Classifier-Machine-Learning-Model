@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waste Classification</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+
+window.onload = function() {
+    let consoleArea = document.getElementById('console-area');
+    consoleArea.textContent = 'Console Output:\n';
+}
+async function handleSubmit(event) {
+    event.preventDefault();
+    let consoleArea = document.getElementById('console-area');
+    let uploadedImage = document.getElementById('uploaded-image');
+    let actionType = event.submitter.value;
+
+    let formData = new FormData(document.getElementById('uploadForm'));
+    formData.append('action', actionType);
+    
+    let response = await fetch('/', {
+        method: 'POST',
+        body: formData
+    });
+    let data = await response.json();
+
+    if (actionType === "Upload") {
+        if (data.status === 'success' && data.image_url) {
+            uploadedImage.src = data.image_url;
+            uploadedImage.style.display = 'block';
+        }
+    } else if (actionType === "Classify") {
+        consoleArea.innerHTML = 'Initializing...<br>';
+        setTimeout(() => { consoleArea.innerHTML += 'Loading model...<br>'; }, 500);
+        setTimeout(() => { consoleArea.innerHTML += 'Processing image...<div class="loader"></div><br>'; }, 1000);
+        if (data.status === 'success') {
+            setTimeout(() => { 
+                consoleArea.innerHTML += 'Classification complete.<br>'; 
+                consoleArea.innerHTML += '<strong style="font-size: 1.5em;">Prediction: ' + data.prediction + '</strong>';
+
+
+                // Remove the loader
+                let loader = document.querySelector('.loader');
+                if (loader) loader.remove();
+            }, 2000);
+        } else {
+            // Remove the loader
+            let loader = document.querySelector('.loader');
+            if (loader) loader.remove();
+            consoleArea.textContent = data.message;
+        }
+    }
+
+    window.onload = function() {
+    let consoleArea = document.getElementById('console-area');
+    consoleArea.textContent = 'Console Output:\n';
+}
+}
+
+
+
+    </script>
+
+
+</head>
+<body>
+    <h1 id="model">Pacific Model</h1>
+    
+    <a href="{{ url_for('static', filename='final_waste_classifier - Copy (5).h5') }}" download>
+    <img id="uploaded-image" src="{{ url_for('static', filename='photo.png') }}" alt="Drop your files here" style="max-width: 500px;">
+    <div class="container">
+            <button>Download Model</button>
+        </a>
+        
+        <h2>Upload an image for waste classification</h2>
+        <form id="uploadForm" action="/" method="post" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+            <input type="submit" value="Classify">
+        </form>
+
+      
+        <pre id="console-area" style="border: 1px solid green; padding: 10px; margin-top: 20px; color: green;"></pre>
+
+    </div>
+</body>
+</html>
