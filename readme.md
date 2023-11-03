@@ -1,4 +1,4 @@
-# Waste Classification Project
+# Waste Classification Project https://www.waste-management-model.pacifictrout.com
 
 This project focuses on the classification of waste into two categories: Organic (O) and Recyclable (R). The classification is done using a deep learning model built with TensorFlow and Keras.
 
